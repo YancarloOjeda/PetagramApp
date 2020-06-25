@@ -19,7 +19,6 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
     ArrayList<Mascota> mascotas;
     Activity activity;
-    int numeroLikes;
 
 
     public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity){
@@ -35,18 +34,18 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MascotaViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull final MascotaViewHolder holder, int position){
         final Mascota mascota = mascotas.get(position);
-        numeroLikes = mascota.getCantidadRaiting();
-        String aux_numeroLikes = String.valueOf(numeroLikes);
         holder.imgFoto.setImageResource(mascota.getFoto());
         holder.tvNombreCV.setText(mascota.getNombre());
-        holder.tvNumeroLikesCV.setText(aux_numeroLikes);
+        holder.tvNumeroLikesCV.setText(String.valueOf(mascota.getCantidadRaiting()));
 
         holder.imgFoto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Toast.makeText(activity, mascota.getNombre(), Toast.LENGTH_SHORT).show();
+                mascota.setCantidadRaiting(mascota.getCantidadRaiting() + 1);
+                holder.tvNumeroLikesCV.setText(String.valueOf(mascota.getCantidadRaiting()));
             }
         });
 
@@ -76,6 +75,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             tvNombreCV = (TextView) itemView.findViewById(R.id.tvNombreCV);
             tvNumeroLikesCV = (TextView) itemView.findViewById(R.id.tvNumeroLikesCV);
             btnLike = (ImageButton) itemView.findViewById(R.id.btnLike);
+
         }
     }
 

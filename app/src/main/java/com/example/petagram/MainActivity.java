@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void inicializarListaMascotas(){
+        /*Estos datos son estaticos. Cada vez que se inicializa este activity, se vuelven a cargar los mismos datos,
+        no importa que los haya modificado en el setter. Lo mismo pasa en el activity Favoritos, que tiene la misma lista
+        y se inicializa de la misma forma que aquí. Lo que necesito para que estos datos sean variables y no estaticos, es
+        que al iniciar la App se lean de una BD y que cuando se cierre la App los guarde.
+         */
         mascotas = new ArrayList<Mascota>();
         mascotas.add(new Mascota(R.mipmap.mascota_1_foreground, "Jack", 5, true));
         mascotas.add(new Mascota(R.mipmap.mascota_2_foreground, "Titan", 15, true));

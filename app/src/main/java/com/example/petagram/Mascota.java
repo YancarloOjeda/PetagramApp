@@ -2,7 +2,7 @@ package com.example.petagram;
 
 public class Mascota {
     private String nombre;
-    private int  cantidadRaiting;
+    public int  cantidadRaiting;
     private Boolean like;
     private int foto;
 
